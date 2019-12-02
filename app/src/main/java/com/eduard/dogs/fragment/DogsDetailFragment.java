@@ -4,34 +4,34 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.eduard.dogs.R;
+import com.eduard.dogs.activity.MainActivity;
 import com.eduard.dogs.adapter.DogsImgAdapter;
 import com.eduard.dogs.model.DogsImageList;
 import com.eduard.dogs.retrofit.ApiClient;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import static com.eduard.dogs.constants.DogsConstants.BREED;
+import static com.eduard.dogs.constants.DogsConstants.SUBBREED;
 
 public class DogsDetailFragment extends Fragment {
 
     public static String TAG = DogsDetailFragment.class.getSimpleName();
-    String breedName = "";
-    String subbreedName = "";
+    private String breedName = "";
+    private String subbreedName = "";
     private DogsImgAdapter adapter;
-    RecyclerView recyclerView;
-
+    private RecyclerView recyclerView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_dogs_detail, container, false);
     }
 
@@ -48,14 +48,15 @@ public class DogsDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String breedName = getArguments().getString("breed", "");
 
-        String subbreedName = getArguments().getString("subbreed" , "");
+        String breedName = getArguments().getString(BREED, "");
+        String subbreedName = getArguments().getString(SUBBREED, "");
+        ActionBar toolbar = ((MainActivity) getActivity()).getSupportActionBar();
+        toolbar.setTitle(breedName + " " + subbreedName);
 
         if (breedName != null && !breedName.isEmpty()) {
            this.breedName = breedName;
         }
-
         if (subbreedName != null && !subbreedName.isEmpty()) {
             this.subbreedName = subbreedName;
         }
@@ -63,9 +64,8 @@ public class DogsDetailFragment extends Fragment {
 
     private void getImageList(String name , String subname) {
 
-        if(subname == ""){
-
-        ApiClient.getInstance()
+        if(subname.isEmpty()){
+            ApiClient.getInstance()
                 .getBreedsService()
                 .fetchDogImages(name)
                 .enqueue(new Callback<DogsImageList>() {
@@ -79,8 +79,6 @@ public class DogsDetailFragment extends Fragment {
                         } else {
                             //TODO show error message
                         }
-
-//                        Log.d(TAG, "onResponse ");
                     }
 
                     @Override
@@ -89,7 +87,6 @@ public class DogsDetailFragment extends Fragment {
                     }
                 });
         }else {
-
             ApiClient.getInstance()
                     .getBreedsService()
                     .fetchSubDogImages(name,subname)
@@ -104,10 +101,7 @@ public class DogsDetailFragment extends Fragment {
                             } else {
                                 //TODO show error message
                             }
-
-//                        Log.d(TAG, "onResponse ");
                         }
-
                         @Override
                         public void onFailure(Call<DogsImageList> call, Throwable t) {
                             Log.d(TAG, "onFailure ");
@@ -120,12 +114,10 @@ public class DogsDetailFragment extends Fragment {
         DogsDetailFragment breeedDetailFragment = new DogsDetailFragment();
         Bundle args = new Bundle();
 
-        args.putString("breed", breed);
-        args.putString("subbreed", subbreed);
+        args.putString(BREED, breed);
+        args.putString(SUBBREED, subbreed);
 
         breeedDetailFragment.setArguments(args);
         return breeedDetailFragment;
     }
-
-
 }

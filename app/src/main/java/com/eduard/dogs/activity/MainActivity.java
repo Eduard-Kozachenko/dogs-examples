@@ -15,11 +15,11 @@ import static com.eduard.dogs.fragment.DogsListFragment.TAG;
 import com.eduard.dogs.R;
 import com.eduard.dogs.fragment.DogsDetailFragment;
 import com.eduard.dogs.fragment.DogsListFragment;
-import java.util.ArrayList;
+import com.eduard.dogs.model.AlertErrorMessage;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvInetMessg;
+    private AlertErrorMessage alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,23 +30,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(isOnline()){
-
-            tvInetMessg.setVisibility(View.GONE);
-
             addFragment();
-
         }else {
+           alertDialog =new AlertErrorMessage();
+           alertDialog.showDialog( this,"No signal! \n Please check your internet connection");
+        }
+    }
 
             tvInetMessg.setVisibility(View.VISIBLE);
         }
 
     }
 
-    /*
-     * isOnline - Check if there is a NetworkConnection
-     * @return boolean
-     */
-    //proverka internet soedineniya
+    //checking internet connection
     protected boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();

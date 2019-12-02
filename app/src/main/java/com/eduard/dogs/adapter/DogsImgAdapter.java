@@ -1,25 +1,20 @@
 package com.eduard.dogs.adapter;
 
-
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.eduard.dogs.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DogsImgAdapter extends RecyclerView.Adapter<DogsImgAdapter.ImageViewHolder> {
 
-    List<String> mdata = new ArrayList<>();
+    List<String> listDogs = new ArrayList<>();
     private LayoutInflater mInflater;
 
     public DogsImgAdapter(Context context) {
@@ -35,16 +30,16 @@ public class DogsImgAdapter extends RecyclerView.Adapter<DogsImgAdapter.ImageVie
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder imageViewHolder, int i) {
-        Picasso.get().load(mdata.get(i)).into(imageViewHolder.imgBreedView);
+        Picasso.get().load(listDogs.get(i)).into(imageViewHolder.imgBreedView);
     }
 
     @Override
     public int getItemCount() {
-        return mdata.size();
+        return listDogs.size();
     }
 
     public void setImgList(List<String> data) {
-        mdata = data;
+        listDogs = data;
     }
 
 
