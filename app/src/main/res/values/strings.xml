@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Dogs</string>
+    <string name="error_inet">No signal! \n Please check your internet connection</string>
+</resources>
