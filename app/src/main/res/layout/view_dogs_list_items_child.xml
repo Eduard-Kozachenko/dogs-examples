@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#BCE3F0"
+    android:padding="5dp">
 
 
     <TextView
@@ -12,7 +14,8 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="italic"
-        tools:text="Dogs name child" />
+        tools:text="Dogs name child"
+        android:padding="5dp"/>
 
 
 </LinearLayout>

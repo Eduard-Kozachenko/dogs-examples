@@ -3,11 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="5dp"
+    android:orientation="horizontal"
+    android:layout_weight="1"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#B0FFEB3B">
+    >
 
     <TextView
         android:id="@+id/dogs_name_text"
@@ -15,8 +14,20 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="18sp"
+        android:textColor="#000"
         tools:text="Dogs name bla bla bla"
-        /> <!--android:textAlignment="center"-->
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/iv_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_weight="9"
+        tools:srcCompat="@tools:sample/avatars[0]" />
+
 
 
 </LinearLayout>

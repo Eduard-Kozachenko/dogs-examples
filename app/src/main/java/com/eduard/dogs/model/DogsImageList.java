@@ -1,8 +1,6 @@
 package com.eduard.dogs.model;
 
-
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class DogsImageList {
@@ -16,9 +14,7 @@ public class DogsImageList {
     public List<String> getBreedImage() {
         return imageList;
     }
-
     public void setBreedsList(List<String> imageList) {
         this.imageList = imageList;
     }
-
 }
