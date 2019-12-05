@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#000"
-        tools:text="Dogs name bla bla bla"
-        android:elevation="10dp"
-        android:padding="10dp"
+        android:textSize="@dimen/text_dieciocho"
+        android:textColor="@color/black"
+        tools:text="@string/test_dogs_header"
+        android:elevation="@dimen/elevation_diez"
+        android:padding="@dimen/margin_diez"
         android:layout_weight="1"/>
 
     <ImageView
