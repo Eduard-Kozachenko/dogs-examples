@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Dogs</string>
+    <string name="btn_ok">OK</string>
+    <string name="test_dogs_header">Dogs name bla bla bla</string>
+    <string name="test_dogs_child">Dogs name child</string>
     <string name="error_inet">No signal! \n Please check your internet connection</string>
 </resources>

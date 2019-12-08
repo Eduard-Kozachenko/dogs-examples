@@ -40,7 +40,8 @@ public class DogsListFragment extends Fragment  {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+       ActionBar toolbar = ((MainActivity) getActivity()).getSupportActionBar();
+       toolbar.setTitle("Dogs List");
 
         return inflater.inflate(R.layout.fragment_dogs_list, container, false);
     }
@@ -87,13 +88,16 @@ public class DogsListFragment extends Fragment  {
                                     }
                                 }
                                 listDataChild.put(listDataHeader.get(i), subBreedS);
-
                             }
+
+                            LayoutAnimationController controller;
+                            controller = AnimationUtils.loadLayoutAnimation(cont,R.anim.layout_slide_from_right);
 
                             expListView = (ExpandableListView) expListView.findViewById(R.id.expListDogs);
                             expListAdapter = new ExpandableListViewAdapter( cont , listDataHeader , listDataChild);
                             expListView.setAdapter(expListAdapter);
-
+                            expListView.setLayoutAnimation(controller);
+                            expListView.scheduleLayoutAnimation();
                             expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
                                 @Override

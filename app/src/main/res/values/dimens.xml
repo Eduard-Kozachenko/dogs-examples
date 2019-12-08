@@ -2,9 +2,21 @@
 
 <resources>
 
-    <dimen name="layout_margin">10dp</dimen>
+    <dimen name="margin_four">4dp</dimen>
+    <dimen name="margin_five">5dp</dimen>
+    <dimen name="margin_ten">10dp</dimen>
+    <dimen name="margin_twenty">20dp</dimen>
     
-    <dimen name="text_size">20dp</dimen>
+    <dimen name="padding_four">4dp</dimen>
+    <dimen name="padding_five">5dp</dimen>
+    <dimen name="padding_ten">10dp</dimen>
+    <dimen name="padding_twenty">20dp</dimen>
+
+    <dimen name="elevation_four">4dp</dimen>
+    <dimen name="elevation_ten">10dp</dimen>
+
+    <dimen name="text_eighteen">18sp</dimen>
+    <dimen name="text_twenty">20sp</dimen>
 
     <integer name="anim_dur_medium">1000</integer>
 

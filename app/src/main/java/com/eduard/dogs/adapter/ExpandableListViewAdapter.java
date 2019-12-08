@@ -86,7 +86,21 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.view_dogs_list_item, null);
         }
 
-        TextView lblListHeader = (TextView) convertView
+        ImageView arrowIcon = convertView
+                .findViewById(R.id.iv_indicator);
+
+        if (getChildrenCount(groupPosition) > 0) {
+            arrowIcon.setVisibility(View.VISIBLE);
+            if (isExpanded) {
+                arrowIcon.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+            } else {
+                arrowIcon.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+            }
+        } else {
+            arrowIcon.setVisibility(View.GONE);
+        }
+
+        TextView lblListHeader = convertView
                 .findViewById(R.id.dogs_name_text);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);

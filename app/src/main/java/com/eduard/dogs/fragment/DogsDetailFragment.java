@@ -53,6 +53,7 @@ public class DogsDetailFragment extends Fragment {
         String subbreedName = getArguments().getString(SUBBREED, "");
         ActionBar toolbar = ((MainActivity) getActivity()).getSupportActionBar();
         toolbar.setTitle(breedName + " " + subbreedName);
+        toolbar.setDisplayHomeAsUpEnabled(true);
 
         if (breedName != null && !breedName.isEmpty()) {
            this.breedName = breedName;

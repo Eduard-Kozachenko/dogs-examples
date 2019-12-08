@@ -3,16 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/heavenly"
+    android:padding="@dimen/padding_five">
 
 
     <TextView
         android:id="@+id/dogs_name_text_child"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_eighteen"
         android:textStyle="italic"
-        tools:text="Dogs name child" />
+        tools:text="@string/test_dogs_child"
+        android:padding="@dimen/padding_five"/>
 
 
 </LinearLayout>

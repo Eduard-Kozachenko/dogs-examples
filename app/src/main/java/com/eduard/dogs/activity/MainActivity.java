@@ -7,10 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import static com.eduard.dogs.fragment.DogsListFragment.TAG;
 import com.eduard.dogs.R;
 import com.eduard.dogs.fragment.DogsDetailFragment;
@@ -26,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvInetMessg = findViewById(R.id.tvInetMessg);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if(isOnline()){
             addFragment();
@@ -37,9 +35,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-            tvInetMessg.setVisibility(View.VISIBLE);
+    //return home
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 1){
+            finish();
         }
+        else {
+            super.onBackPressed();
+        }
+    }
 
+    //call onBackPressed to return to the dog list
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home) {
+            super.onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //checking internet connection
@@ -66,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         DogsDetailFragment detailFragment = DogsDetailFragment.newInstance(breed,subbreed);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         transaction.replace(R.id.fl_container,detailFragment,TAG);
+        transaction.addToBackStack(TAG);
         transaction.commit();
     }
 }
