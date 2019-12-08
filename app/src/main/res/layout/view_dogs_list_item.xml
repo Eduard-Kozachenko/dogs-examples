@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="@dimen/text_dieciocho"
+        android:textSize="@dimen/text_eighteen"
         android:textColor="@color/black"
         tools:text="@string/test_dogs_header"
-        android:elevation="@dimen/elevation_diez"
-        android:padding="@dimen/margin_diez"
+        android:elevation="@dimen/elevation_ten"
+        android:padding="@dimen/margin_ten"
         android:layout_weight="1"/>
 
     <ImageView

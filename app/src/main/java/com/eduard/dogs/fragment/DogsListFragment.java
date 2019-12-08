@@ -90,7 +90,7 @@ public class DogsListFragment extends Fragment  {
                                 listDataChild.put(listDataHeader.get(i), subBreedS);
                             }
 
-                            LayoutAnimationController controller = null;
+                            LayoutAnimationController controller;
                             controller = AnimationUtils.loadLayoutAnimation(cont,R.anim.layout_slide_from_right);
 
                             expListView = (ExpandableListView) expListView.findViewById(R.id.expListDogs);
