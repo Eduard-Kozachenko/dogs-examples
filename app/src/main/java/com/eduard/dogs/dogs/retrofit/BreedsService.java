@@ -1,13 +1,14 @@
-package com.eduard.dogs.retrofit;
+package com.eduard.dogs.dogs.retrofit;
 
-import com.eduard.dogs.model.DogsImageList;
+import com.eduard.dogs.dogs.model.DogsImageList;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import static com.eduard.dogs.constants.DogsConstants.BREED;
-import static com.eduard.dogs.constants.DogsConstants.BREED_LIST_URL;
-import static com.eduard.dogs.constants.DogsConstants.SUBBREED;
+
+import static com.eduard.dogs.dogs.constants.DogsConstants.BREED;
+import static com.eduard.dogs.dogs.constants.DogsConstants.BREED_LIST_URL;
+import static com.eduard.dogs.dogs.constants.DogsConstants.SUBBREED;
 
 public interface BreedsService {
 

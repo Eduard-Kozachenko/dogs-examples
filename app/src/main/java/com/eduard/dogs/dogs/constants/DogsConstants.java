@@ -1,4 +1,4 @@
-package com.eduard.dogs.constants;
+package com.eduard.dogs.dogs.constants;
 
 public class DogsConstants {
 

@@ -1,6 +1,6 @@
-package com.eduard.dogs.presenter.contracts;
+package com.eduard.dogs.dogs.presenter.contracts;
 
-import com.eduard.dogs.base.BasePresenter;
+import com.eduard.dogs.dogs.base.BasePresenter;
 
 import java.util.HashMap;
 import java.util.List;

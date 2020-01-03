@@ -1,4 +1,4 @@
-package com.eduard.dogs.adapter;
+package com.eduard.dogs.dogs.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;

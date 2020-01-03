@@ -1,10 +1,12 @@
-package com.eduard.dogs.base;
+package com.eduard.dogs.dogs.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.eduard.dogs.dogs.base.BasePresenter;
 
 public class BaseFragment extends Fragment {
 
@@ -13,6 +15,7 @@ public class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        onInjection();
         onPrepareFragment(view);
         onPreparePresenter();
     }
@@ -21,6 +24,10 @@ public class BaseFragment extends Fragment {
     }
 
     public void onPrepareFragment(View view) {
+
+    }
+
+    protected void onInjection() {
 
     }
 
