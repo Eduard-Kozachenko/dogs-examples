@@ -1,4 +1,4 @@
-package com.eduard.dogs.fragment;
+package com.eduard.dogs.dogs.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.eduard.dogs.fragment;
+package com.eduard.dogs.dogs.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,25 +10,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.eduard.dogs.DogsApp;
 import com.eduard.dogs.R;
-import com.eduard.dogs.activity.MainActivity;
-import com.eduard.dogs.adapter.DogsImgAdapter;
-import com.eduard.dogs.base.BaseFragment;
-import com.eduard.dogs.presenter.DogsDetailPresenter;
-import com.eduard.dogs.presenter.contracts.DogsDetailContract;
+import com.eduard.dogs.dogs.activity.MainActivity;
+import com.eduard.dogs.dogs.adapter.DogsImgAdapter;
+import com.eduard.dogs.dogs.base.BaseFragment;
+import com.eduard.dogs.dogs.di.DaggerDogsComponent;
+import com.eduard.dogs.dogs.di.PresenterModul;
+import com.eduard.dogs.dogs.presenter.DogsDetailPresenter;
+import com.eduard.dogs.dogs.presenter.contracts.DogsDetailContract;
 
 import java.util.List;
 
-import static com.eduard.dogs.constants.DogsConstants.BREED;
-import static com.eduard.dogs.constants.DogsConstants.SUBBREED;
+import javax.inject.Inject;
+
+import static com.eduard.dogs.dogs.constants.DogsConstants.BREED;
+import static com.eduard.dogs.dogs.constants.DogsConstants.SUBBREED;
 
 public class DogsDetailFragment extends BaseFragment implements DogsDetailContract.View {
 
+    @Inject
+    DogsDetailPresenter presenter;
+
+    public static final String TAG = DogsDetailFragment.class.getSimpleName();
     private String breedName = "";
     private String subbreedName = "";
     private DogsImgAdapter adapter;
     private RecyclerView recyclerView;
-    private DogsDetailPresenter presenter = new DogsDetailPresenter();
     private DialogFragment loadingFragment = LoadingDialogFragment.getInstance();
 
     @Override
@@ -51,11 +60,21 @@ public class DogsDetailFragment extends BaseFragment implements DogsDetailContra
     }
 
     @Override
+    protected void onInjection() {
+        DaggerDogsComponent.builder()
+                .appComponent(DogsApp.getComponent())
+                .presenterModul(new PresenterModul())
+                .build()
+                .inject(this);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         String breedName = getArguments().getString(BREED, "");
         String subbreedName = getArguments().getString(SUBBREED, "");
+
         ActionBar toolbar = ((MainActivity) getActivity()).getSupportActionBar();
         toolbar.setTitle(breedName + " " + subbreedName);
         toolbar.setDisplayHomeAsUpEnabled(true);

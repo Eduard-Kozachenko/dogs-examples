@@ -1,8 +1,8 @@
-package com.eduard.dogs.presenter;
+package com.eduard.dogs.dogs.presenter;
 
-import com.eduard.dogs.base.BasePresenter;
-import com.eduard.dogs.presenter.contracts.DogsListContract;
-import com.eduard.dogs.retrofit.ApiClient;
+import com.eduard.dogs.dogs.base.BasePresenter;
+import com.eduard.dogs.dogs.presenter.contracts.DogsListContract;
+import com.eduard.dogs.dogs.retrofit.ApiClient;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -11,18 +11,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.eduard.dogs.constants.DogsConstants.BREED_NAME;
+import static com.eduard.dogs.dogs.constants.DogsConstants.BREED_NAME;
 
 public class DogsListPresenter extends BasePresenter<DogsListContract.View> implements DogsListContract.Presenter {
+    @Inject
+    ApiClient apiClient;
 
     @Override
     public void getDogsList() {
         getView().showLoading();                        //start loading
-        ApiClient.getInstance()
+        apiClient.getInstance()
                 .getBreedsService()
                 .fetchBreedsList()
                 .enqueue(new Callback<JsonObject>() {

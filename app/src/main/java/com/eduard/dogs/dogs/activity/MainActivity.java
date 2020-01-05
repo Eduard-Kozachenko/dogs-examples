@@ -1,4 +1,4 @@
-package com.eduard.dogs.activity;
+package com.eduard.dogs.dogs.activity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -9,11 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import static com.eduard.dogs.fragment.DogsListFragment.TAG;
 import com.eduard.dogs.R;
-import com.eduard.dogs.fragment.DogsDetailFragment;
-import com.eduard.dogs.fragment.DogsListFragment;
-import com.eduard.dogs.model.AlertErrorMessage;
+import com.eduard.dogs.dogs.fragment.DogsDetailFragment;
+import com.eduard.dogs.dogs.fragment.DogsListFragment;
+import com.eduard.dogs.dogs.model.AlertErrorMessage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         DogsListFragment dogsListFragment = new DogsListFragment();
-        transaction.add(R.id.fl_container,dogsListFragment,TAG);
+        transaction.add(R.id.fl_container,dogsListFragment, dogsListFragment.TAG);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -80,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         DogsDetailFragment detailFragment = DogsDetailFragment.newInstance(breed,subbreed);
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-        transaction.replace(R.id.fl_container,detailFragment,TAG);
-        transaction.addToBackStack(TAG);
+        transaction.replace(R.id.fl_container,detailFragment,detailFragment.TAG);
+        transaction.addToBackStack(detailFragment.TAG);
         transaction.commit();
     }
 }

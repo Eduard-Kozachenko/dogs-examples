@@ -1,4 +1,4 @@
-package com.eduard.dogs.base;
+package com.eduard.dogs.dogs.base;
 
 public class BasePresenter<V extends BasePresenter.View> {
 
