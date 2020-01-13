@@ -8,7 +8,6 @@ import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.eduard.dogs.DogsApp;
@@ -17,7 +16,7 @@ import com.eduard.dogs.dogs.activity.MainActivity;
 import com.eduard.dogs.dogs.adapter.ExpandableListViewAdapter;
 import com.eduard.dogs.dogs.base.BaseFragment;
 import com.eduard.dogs.dogs.di.DaggerDogsComponent;
-import com.eduard.dogs.dogs.di.PresenterModul;
+import com.eduard.dogs.dogs.di.PresentationModule;
 import com.eduard.dogs.dogs.presenter.DogsListPresenter;
 import com.eduard.dogs.dogs.presenter.contracts.DogsListContract;
 
@@ -30,9 +29,10 @@ public class DogsListFragment extends BaseFragment implements DogsListContract.V
 
     @Inject
     DogsListPresenter presenter;
+    @Inject
+    ExpandableListViewAdapter expListAdapter;
 
     public static final String TAG = DogsListFragment.class.getSimpleName();
-    private ExpandableListAdapter expListAdapter;
     private ExpandableListView expListView;
     private DialogFragment loadingFragment = LoadingDialogFragment.getInstance();
 
@@ -53,6 +53,7 @@ public class DogsListFragment extends BaseFragment implements DogsListContract.V
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        expListAdapter = new ExpandableListViewAdapter(getActivity());
         expListView = view.findViewById(R.id.expListDogs);
         presenter.getDogsList();
     }
@@ -61,7 +62,7 @@ public class DogsListFragment extends BaseFragment implements DogsListContract.V
     protected void onInjection() {
         DaggerDogsComponent.builder()
                 .appComponent(DogsApp.getComponent())
-                .presenterModul(new PresenterModul())
+                .presentationModule(new PresentationModule())
                 .build()
                 .inject(this);
     }
@@ -82,19 +83,14 @@ public class DogsListFragment extends BaseFragment implements DogsListContract.V
 
     @Override
     public void showError() {
-
     }
 
     @Override
     public void setBreedList(final List<String> listDataHeader, final HashMap<String, List<String>> listChildData) {
-
-        //LayoutAnimationController controller;
-        //controller = AnimationUtils.loadLayoutAnimation(getActivity(), R.anim.layout_slide_from_right);
-
         expListView = expListView.findViewById(R.id.expListDogs);
-        expListAdapter = new ExpandableListViewAdapter(getActivity(), listDataHeader, listChildData);
         expListView.setAdapter(expListAdapter);
-        //expListView.setLayoutAnimation(controller);
+        expListAdapter.setData(listDataHeader,listChildData);
+        expListAdapter.notifyDataSetChanged();
         expListView.scheduleLayoutAnimation();
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 

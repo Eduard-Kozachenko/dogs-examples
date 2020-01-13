@@ -20,8 +20,9 @@ import retrofit2.Response;
 import static com.eduard.dogs.dogs.constants.DogsConstants.BREED_NAME;
 
 public class DogsListPresenter extends BasePresenter<DogsListContract.View> implements DogsListContract.Presenter {
-    @Inject
-    ApiClient apiClient;
+
+   @Inject
+   ApiClient apiClient;
 
     @Override
     public void getDogsList() {

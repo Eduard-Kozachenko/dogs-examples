@@ -9,14 +9,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.eduard.dogs.DogsApp;
 import com.eduard.dogs.R;
+import com.eduard.dogs.dogs.di.DaggerDogsComponent;
+import com.eduard.dogs.dogs.di.PresentationModule;
 import com.eduard.dogs.dogs.fragment.DogsDetailFragment;
 import com.eduard.dogs.dogs.fragment.DogsListFragment;
 import com.eduard.dogs.dogs.model.AlertErrorMessage;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
 
-    private AlertErrorMessage alertDialog;
+    @Inject
+    AlertErrorMessage alertErrorMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        onInjection();
+
         if(isOnline()){
             addFragment();
         }else {
-           alertDialog =new AlertErrorMessage();
-           alertDialog.showDialog( this,"No signal! \n Please check your internet connection");
+            alertErrorMessage.showDialog( this,"No signal! \n Please check your internet connection");
         }
     }
 
@@ -63,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return false;
         }
+    }
+
+    //builder alert dialog
+    protected void onInjection() {
+        DaggerDogsComponent.builder()
+                .appComponent(DogsApp.getComponent())
+                .presentationModule(new PresentationModule())
+                .build()
+                .inject(this);
     }
 
     private void addFragment() {

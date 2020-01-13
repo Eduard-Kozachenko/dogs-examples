@@ -17,7 +17,7 @@ import com.eduard.dogs.dogs.activity.MainActivity;
 import com.eduard.dogs.dogs.adapter.DogsImgAdapter;
 import com.eduard.dogs.dogs.base.BaseFragment;
 import com.eduard.dogs.dogs.di.DaggerDogsComponent;
-import com.eduard.dogs.dogs.di.PresenterModul;
+import com.eduard.dogs.dogs.di.PresentationModule;
 import com.eduard.dogs.dogs.presenter.DogsDetailPresenter;
 import com.eduard.dogs.dogs.presenter.contracts.DogsDetailContract;
 
@@ -32,11 +32,12 @@ public class DogsDetailFragment extends BaseFragment implements DogsDetailContra
 
     @Inject
     DogsDetailPresenter presenter;
+    @Inject
+    DogsImgAdapter imgAdapter;
 
     public static final String TAG = DogsDetailFragment.class.getSimpleName();
     private String breedName = "";
     private String subbreedName = "";
-    private DogsImgAdapter adapter;
     private RecyclerView recyclerView;
     private DialogFragment loadingFragment = LoadingDialogFragment.getInstance();
 
@@ -53,6 +54,7 @@ public class DogsDetailFragment extends BaseFragment implements DogsDetailContra
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imgAdapter = new DogsImgAdapter(getActivity());
         recyclerView = view.findViewById(R.id.rv_container_img);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -63,7 +65,7 @@ public class DogsDetailFragment extends BaseFragment implements DogsDetailContra
     protected void onInjection() {
         DaggerDogsComponent.builder()
                 .appComponent(DogsApp.getComponent())
-                .presenterModul(new PresenterModul())
+                .presentationModule(new PresentationModule())
                 .build()
                 .inject(this);
     }
@@ -99,12 +101,11 @@ public class DogsDetailFragment extends BaseFragment implements DogsDetailContra
     }
 
     @Override
-    public void setBreedDetail(List<String> imgList) {
+    public void setBreedDetail(final List<String> imgList) {
 
-        adapter = new DogsImgAdapter(getActivity());
-        adapter.setImgList(imgList);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(imgAdapter);
+        imgAdapter.setImgList(imgList);
+        imgAdapter.notifyDataSetChanged();
     }
 
     @Override

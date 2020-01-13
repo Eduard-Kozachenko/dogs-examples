@@ -1,5 +1,7 @@
 package com.eduard.dogs.dogs.retrofit;
 
+import javax.inject.Inject;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,6 +12,7 @@ public class ApiClient {
     private static ApiClient mInstance;
     private Retrofit mRetrofit;
 
+    @Inject
     public ApiClient() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

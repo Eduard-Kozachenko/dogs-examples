@@ -5,6 +5,10 @@ import com.eduard.dogs.dogs.model.DogsImageList;
 import com.eduard.dogs.dogs.retrofit.ApiClient;
 import com.eduard.dogs.dogs.presenter.contracts.DogsDetailContract;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -30,7 +34,7 @@ public class DogsDetailPresenter extends BasePresenter<DogsDetailContract.View> 
         }
     }
 
-    public void getNameDogs(String name){
+    public void getNameDogs(final String name){
         getView().showLoading();
         apiClient.getInstance()
                 .getBreedsService()
@@ -55,7 +59,7 @@ public class DogsDetailPresenter extends BasePresenter<DogsDetailContract.View> 
                     }
                 });
     }
-    public void getSubnameDogs(String name,String subname){
+    public void getSubnameDogs(final String name, final String subname){
         getView().showLoading();
         apiClient.getInstance()
                 .getBreedsService()
