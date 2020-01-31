@@ -2,8 +2,6 @@ package com.eduard.dogs;
 
 import android.app.Application;
 
-
-
 public class DogsApp extends Application {
 
     private static AppComponent component;

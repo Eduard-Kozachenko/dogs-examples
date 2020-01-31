@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".dogs.d.activity.MainActivity">
+    tools:context=".dogs.presentation.activity.MainActivity">
 
     <include
         android:id="@+id/toolbar"

@@ -1,6 +1,6 @@
 package com.eduard.dogs.dogs.di;
 
-import com.eduard.dogs.dogs.retrofit.ApiClient;
+import com.eduard.dogs.dogs.data.retrofit.ApiClient;
 
 import dagger.Module;
 import dagger.Provides;
