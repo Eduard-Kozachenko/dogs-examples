@@ -1,7 +1,8 @@
-package com.eduard.dogs.adapter;
+package com.eduard.dogs.dogs.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,12 @@ import java.util.List;
 
 public class DogsImgAdapter extends RecyclerView.Adapter<DogsImgAdapter.ImageViewHolder> {
 
-    List<String> listDogs = new ArrayList<>();
+    public Context context;
+    public List<String> listDogs = new ArrayList<>();
     private LayoutInflater mInflater;
 
-    public DogsImgAdapter(Context context) {
-        this.mInflater = LayoutInflater.from(context);
+    public DogsImgAdapter(Context cont) {
+        this.mInflater = LayoutInflater.from(cont);
     }
 
     @NonNull
@@ -38,8 +40,8 @@ public class DogsImgAdapter extends RecyclerView.Adapter<DogsImgAdapter.ImageVie
         return listDogs.size();
     }
 
-    public void setImgList(List<String> data) {
-        listDogs = data;
+    public void setImgList(List<String> dogs) {
+        this.listDogs = dogs;
     }
 
 

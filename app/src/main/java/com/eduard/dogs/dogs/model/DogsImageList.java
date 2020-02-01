@@ -1,4 +1,4 @@
-package com.eduard.dogs.model;
+package com.eduard.dogs.dogs.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;

@@ -1,16 +1,19 @@
-package com.eduard.dogs.retrofit;
+package com.eduard.dogs.dogs.retrofit;
+
+import javax.inject.Inject;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.eduard.dogs.constants.DogsConstants.BASE_URL;
+import static com.eduard.dogs.dogs.constants.DogsConstants.BASE_URL;
 
 public class ApiClient {
 
     private static ApiClient mInstance;
     private Retrofit mRetrofit;
 
-    private ApiClient() {
+    @Inject
+    public ApiClient() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

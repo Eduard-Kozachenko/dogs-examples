@@ -1,4 +1,4 @@
-package com.eduard.dogs.adapter;
+package com.eduard.dogs.dogs.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -8,21 +8,23 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.eduard.dogs.R;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
-    private List<String> listDataHeader;
-    private HashMap<String, List<String>> listDataChild;
+    public Context context;
+    public List<String> listDataHeader = new ArrayList<>();
+    public HashMap<String, List<String>> listDataChild = new HashMap<>();
 
-    public ExpandableListViewAdapter(Context context, List<String> listDataHeader,
-                                     HashMap<String, List<String>> listChildData) {
-        this.context = context;
-        this.listDataHeader = listDataHeader;
-        this.listDataChild = listChildData;
+    public ExpandableListViewAdapter(Context ctx) {
+        this.context = ctx;
     }
 
     @Override
@@ -48,7 +50,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.view_dogs_list_items_child, null);
         }
 
-        TextView txtListChild = (TextView) convertView
+        TextView txtListChild = convertView
                 .findViewById(R.id.dogs_name_text_child);
         txtListChild.setText(childText);
         return convertView;
@@ -116,5 +118,10 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public void setData(List<String> listDataHeader, HashMap<String, List<String>> listDataChild) {
+        this.listDataHeader = listDataHeader;
+        this.listDataChild = listDataChild;
     }
 }
